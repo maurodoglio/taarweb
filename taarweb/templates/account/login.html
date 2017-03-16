@@ -1,0 +1,18 @@
+{% extends "taar/base.html" %}
+{% load socialaccount staticfiles %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-sm-14">
+    <div class="jumbotron">
+      <h2>Telemetry-Aware Addon Recommender</h2>
+      <p>To get started, log in with your <code>@mozilla.com</code> Google account</p>
+      <p>
+        <a title="login" class="btn btn-primary btn-lg" href="{% provider_login_url "google" next=redirect_field_value %}">Login with Google</a>
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "taar/base.html" %}
+{% load staticfiles %}
+
+{% block page_title %}Addon recommender{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Addon recommender <small class="hidden-xs hidden-sm">Get addon recommendations for your browser.</small></h2>
+</div>
+<div class="row">
+    <div class="col-sm-5">
+
+
+    <form class="form-horizontal" action="" method="post">
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            {{ form.client_id.errors }}
+            <label class="col-sm-3 control-label" for="{{ form.client_id.id_for_label }}">Client ID:</label>
+            <div class="col-sm-9">
+            {{ form.client_id }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form.num_items.errors }}
+            <label class="col-sm-3 control-label" for="{{ form.num_items.id_for_label }}">Total results:</label>
+            <div class="col-sm-3">
+            {{ form.num_items }}
+            </div>
+        </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button class="btn btn-default" type="submit">Get recommendations</button>
+        </div>
+      </div>
+
+      {% csrf_token %}
+    </form>
+</div>
+<div class="col-sm-4">
+    {% if form.is_valid and form.data.client_id %}
+      <div class="list-group">
+      {% for recommendation in recommendations %}
+        <a href="https://addons.mozilla.org/en-US/firefox/search/?q={{recommendation}}"
+           class="list-group-item">{{ recommendation }}</a>
+      {% empty %}
+      No recommendations found :(
+      {% endfor %}
+  </div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

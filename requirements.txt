@@ -1,0 +1,10 @@
+numpy==1.12.1rc1
+requests==2.13.0
+thriftpy==0.3.9
+six==1.10.0
+ply==3.10
+Django==1.10
+python-decouple==3.0
+git+https://github.com/maurodoglio/taar.git
+django-allauth==0.31.0
+psycopg2==2.7.1
