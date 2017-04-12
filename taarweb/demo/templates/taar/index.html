@@ -38,10 +38,9 @@
 </div>
 <div class="col-sm-4">
     {% if form.is_valid and form.data.client_id %}
-      <div class="list-group">
+      <div id="recommendations" class="list-group">
       {% for recommendation in recommendations %}
-        <a href="https://addons.mozilla.org/en-US/firefox/search/?q={{recommendation}}"
-           class="list-group-item">{{ recommendation }}</a>
+        <a class="list-group-item" style="display:none">{{ recommendation }}</a>
       {% empty %}
       No recommendations found :(
       {% endfor %}

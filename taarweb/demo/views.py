@@ -37,7 +37,7 @@ def get_client_recommendations(request):
                     error_text = ("It wasn't possible to retrieve"
                                   "the list of addons")
                 cache.set('addon_mapping', addon_mapping)
-            recommendations = [addon_mapping.get(r, "")
+            recommendations = [addon_mapping.get(r, {}).get("id")
                                for r in recommendations]
     context = {
         'form': form,
