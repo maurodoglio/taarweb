@@ -19,5 +19,27 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+          var BASE_AMO_URL = "https://addons.mozilla.org/api/v3/addons/addon/";
+          $('#recommendations > a').each(function () {
+              var linkElement = this;
+              var infoURL = BASE_AMO_URL + linkElement.text;
+              // Request the addon info from AMO.
+              $.getJSON(infoURL, {}, function (data, status) {
+                  // Get the data for the addon.
+                  var defaultLocale = data.default_locale;
+                  var addonName = data.name[defaultLocale];
+                  var desc = data.description[defaultLocale];
+                  // Update the DOM element with the data.
+                  $(linkElement).attr('href', data.url);
+                  $(linkElement).attr('title', desc);
+                  $(linkElement).text(addonName);
+                  // Show the element once we have the addon info.
+                  $(linkElement).show();
+              });
+          });
+      });
+    </script>
   </body>
 </html>
